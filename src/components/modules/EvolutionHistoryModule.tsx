@@ -6,12 +6,16 @@ import {
   AlertTriangle, ArrowRight, Search, User, Shield, Eye,
   ChevronDown, ChevronUp, Loader2,
 } from 'lucide-react'
-import {
-  Card, CardHeader, CardTitle, CardContent, CardDescription,
-  Badge, Button, Input, Separator, Skeleton, Progress, ScrollArea,
-  Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
-  Select, SelectTrigger, SelectValue, SelectContent, SelectItem,
-} from '@/components/ui'
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Separator } from '@/components/ui/separator'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Progress } from '@/components/ui/progress'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 import {
   ChartContainer, ChartTooltip, ChartTooltipContent,
   type ChartConfig,
