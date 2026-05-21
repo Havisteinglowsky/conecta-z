@@ -15,6 +15,7 @@ export type ActiveModule =
   | 'cognitive-profiles'
   | 'records'
   | 'reports'
+  | 'teaching-plans'
   | 'ai-assistant'
 
 // --- Institution ---
@@ -163,6 +164,33 @@ export interface Student {
   modalidade: string | null
   transporteEscolar: boolean
   alimentacao: string | null
+  // Analfabeto / Leitura Escrita
+  analfabeto: boolean
+  nivelLeitura: string | null
+  nivelEscrita: string | null
+  metodoAlfabetizacao: string | null
+  materialVisual: boolean
+  materialAudio: boolean
+  materialTatil: boolean
+  adaptacaoComunicacao: string | null
+  apoioVisualSala: boolean
+  instrucaoVerbal: boolean
+  repeticaoReforco: boolean
+  ritmoAprendizagem: string | null
+  // Deficiência Intelectual
+  deficienciaIntelectual: boolean
+  nivelFuncionamento: string | null
+  nivelAutonomia: string | null
+  tipoApoio: string | null
+  rotinaVisual: boolean
+  instrucaoSimplificada: boolean
+  tarefasFragmentadas: boolean
+  tempoEstendido: boolean
+  avaliacaoAdaptada: boolean
+  salaRecursosFreq: boolean
+  adaptacaoCurricular: string | null
+  pei: boolean
+  peiDescricao: string | null
   observacoes: string | null
   ativo: boolean
   createdAt: string
@@ -173,6 +201,7 @@ export interface Student {
   records?: Record[]
   reports?: Report[]
   companionLinks?: StudentCompanion[]
+  teachingPlans?: TeachingPlan[]
 }
 
 export interface StudentFormData {
@@ -232,6 +261,31 @@ export interface StudentFormData {
   modalidade?: string
   transporteEscolar?: boolean
   alimentacao?: string
+  analfabeto?: boolean
+  nivelLeitura?: string
+  nivelEscrita?: string
+  metodoAlfabetizacao?: string
+  materialVisual?: boolean
+  materialAudio?: boolean
+  materialTatil?: boolean
+  adaptacaoComunicacao?: string
+  apoioVisualSala?: boolean
+  instrucaoVerbal?: boolean
+  repeticaoReforco?: boolean
+  ritmoAprendizagem?: string
+  deficienciaIntelectual?: boolean
+  nivelFuncionamento?: string
+  nivelAutonomia?: string
+  tipoApoio?: string
+  rotinaVisual?: boolean
+  instrucaoSimplificada?: boolean
+  tarefasFragmentadas?: boolean
+  tempoEstendido?: boolean
+  avaliacaoAdaptada?: boolean
+  salaRecursosFreq?: boolean
+  adaptacaoCurricular?: string
+  pei?: boolean
+  peiDescricao?: string
   observacoes?: string
   ativo?: boolean
 }
@@ -691,6 +745,75 @@ export interface ReportFormData {
   geradoPor?: string
   revisadoPor?: string
   status?: string
+}
+
+// --- TeachingPlan ---
+export interface TeachingPlan {
+  id: string
+  studentId: string
+  titulo: string
+  periodo: string | null
+  anoLetivo: string | null
+  objetivoGeral: string | null
+  objetivosEspecificos: string | null
+  conteudos: string | null
+  metodologias: string | null
+  recursosDidaticos: string | null
+  adaptacaoMetodologia: string | null
+  adaptacaoAvaliacao: string | null
+  adaptacaoConteudo: string | null
+  adaptacaoTemporal: string | null
+  cronograma: string | null
+  criteriosAvaliacao: string | null
+  instrumentosAvaliacao: string | null
+  frequenciaEsperada: string | null
+  professorResponsavel: string | null
+  psicologoResponsavel: string | null
+  coordenadorResponsavel: string | null
+  parecerPedagogico: string | null
+  parecerPsicologico: string | null
+  parecerFamiliar: string | null
+  status: string
+  dataInicio: string | null
+  dataTermino: string | null
+  dataRevisao: string | null
+  observacoes: string | null
+  ativo: boolean
+  createdAt: string
+  updatedAt: string
+  student?: Student
+}
+
+export interface TeachingPlanFormData {
+  studentId: string
+  titulo: string
+  periodo?: string
+  anoLetivo?: string
+  objetivoGeral?: string
+  objetivosEspecificos?: string
+  conteudos?: string
+  metodologias?: string
+  recursosDidaticos?: string
+  adaptacaoMetodologia?: string
+  adaptacaoAvaliacao?: string
+  adaptacaoConteudo?: string
+  adaptacaoTemporal?: string
+  cronograma?: string
+  criteriosAvaliacao?: string
+  instrumentosAvaliacao?: string
+  frequenciaEsperada?: string
+  professorResponsavel?: string
+  psicologoResponsavel?: string
+  coordenadorResponsavel?: string
+  parecerPedagogico?: string
+  parecerPsicologico?: string
+  parecerFamiliar?: string
+  status?: string
+  dataInicio?: string
+  dataTermino?: string
+  dataRevisao?: string
+  observacoes?: string
+  ativo?: boolean
 }
 
 // --- Dashboard Stats ---

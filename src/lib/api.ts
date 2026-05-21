@@ -21,6 +21,8 @@ import type {
   RecordFormData,
   Report,
   ReportFormData,
+  TeachingPlan,
+  TeachingPlanFormData,
   DashboardStats,
   ApiResponse,
 } from './types'
@@ -445,5 +447,55 @@ export async function updateReport(id: string, data: Partial<ReportFormData>): P
 export async function deleteReport(id: string): Promise<ApiResponse<{ id: string }>> {
   return request<ApiResponse<{ id: string }>>(`/api/reports/${id}`, {
     method: 'DELETE',
+  })
+}
+
+// ---- Teaching Plans ----
+
+export async function fetchTeachingPlans(params?: {
+  studentId?: string
+  search?: string
+}): Promise<TeachingPlan[]> {
+  const searchParams = new URLSearchParams()
+  if (params?.studentId) searchParams.set('studentId', params.studentId)
+  if (params?.search) searchParams.set('search', params.search)
+  const qs = searchParams.toString()
+  return request<TeachingPlan[]>(`/api/teaching-plans${qs ? `?${qs}` : ''}`)
+}
+
+export async function fetchTeachingPlan(id: string): Promise<TeachingPlan> {
+  return request<TeachingPlan>(`/api/teaching-plans/${id}`)
+}
+
+export async function createTeachingPlan(data: TeachingPlanFormData): Promise<TeachingPlan> {
+  return request<TeachingPlan>('/api/teaching-plans', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  })
+}
+
+export async function updateTeachingPlan(id: string, data: Partial<TeachingPlanFormData>): Promise<TeachingPlan> {
+  return request<TeachingPlan>(`/api/teaching-plans/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+}
+
+export async function deleteTeachingPlan(id: string): Promise<ApiResponse<{ id: string }>> {
+  return request<ApiResponse<{ id: string }>>(`/api/teaching-plans/${id}`, {
+    method: 'DELETE',
+  })
+}
+
+// ---- PDF Generation ----
+
+export async function generatePDFReport(data: {
+  reportId?: string
+  studentId?: string
+  tipo?: string
+}): Promise<{ success: boolean; url: string; filename: string }> {
+  return request<{ success: boolean; url: string; filename: string }>('/api/reports/generate-pdf', {
+    method: 'POST',
+    body: JSON.stringify(data),
   })
 }

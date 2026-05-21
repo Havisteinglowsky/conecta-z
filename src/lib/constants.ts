@@ -411,3 +411,94 @@ export const TIPO_SANGUINEO_OPTIONS = [
   { value: 'O+', label: 'O+' },
   { value: 'O-', label: 'O-' },
 ] as const
+
+// ---- Nível de Leitura ----
+export const NIVEL_LEITURA_OPTIONS = [
+  { value: 'Não alfabetizado', label: 'Não alfabetizado' },
+  { value: 'Pré-alfabetização', label: 'Pré-alfabetização' },
+  { value: 'Alfabetização inicial', label: 'Alfabetização inicial' },
+  { value: 'Alfabetização parcial', label: 'Alfabetização parcial' },
+] as const
+
+// ---- Nível de Escrita ----
+export const NIVEL_ESCRITA_OPTIONS = [
+  { value: 'Não escreve', label: 'Não escreve' },
+  { value: 'Escreve nome', label: 'Escreve nome' },
+  { value: 'Escreve frases', label: 'Escreve frases' },
+  { value: 'Escrita funcional', label: 'Escrita funcional' },
+] as const
+
+// ---- Método de Alfabetização ----
+export const METODO_ALFABETIZACAO_OPTIONS = [
+  { value: 'Fonético', label: 'Fonético' },
+  { value: 'Silábico', label: 'Silábico' },
+  { value: 'Global', label: 'Global' },
+  { value: 'Múltiplos', label: 'Múltiplos' },
+] as const
+
+// ---- Adaptação de Comunicação ----
+export const ADAPTACAO_COMUNICACAO_OPTIONS = [
+  { value: 'Libras', label: 'Libras' },
+  { value: 'Braille', label: 'Braille' },
+  { value: 'Pictogramas', label: 'Pictogramas' },
+  { value: 'Comunicação alternativa', label: 'Comunicação alternativa' },
+  { value: 'Boardmaker', label: 'Boardmaker' },
+  { value: 'Outra', label: 'Outra' },
+] as const
+
+// ---- Ritmo de Aprendizagem ----
+export const RITMO_APRENDIZAGEM_OPTIONS = [
+  { value: 'Muito lento', label: 'Muito lento' },
+  { value: 'Lento', label: 'Lento' },
+  { value: 'Moderado', label: 'Moderado' },
+  { value: 'Normal', label: 'Normal' },
+] as const
+
+// ---- Nível de Funcionamento ----
+export const NIVEL_FUNCIONAMENTO_OPTIONS = [
+  { value: 'Leve', label: 'Leve' },
+  { value: 'Moderado', label: 'Moderado' },
+  { value: 'Severo', label: 'Severo' },
+  { value: 'Profundo', label: 'Profundo' },
+] as const
+
+// ---- Nível de Autonomia ----
+export const NIVEL_AUTONOMIA_OPTIONS = [
+  { value: 'Totalmente dependente', label: 'Totalmente dependente' },
+  { value: 'Parcialmente dependente', label: 'Parcialmente dependente' },
+  { value: 'Semi-independente', label: 'Semi-independente' },
+  { value: 'Independente', label: 'Independente' },
+] as const
+
+// ---- Tipo de Apoio ----
+export const TIPO_APOIO_OPTIONS = [
+  { value: 'Supervisão contínua', label: 'Supervisão contínua' },
+  { value: 'Apoio moderado', label: 'Apoio moderado' },
+  { value: 'Apoio leve', label: 'Apoio leve' },
+  { value: 'Autônomo com orientação', label: 'Autônomo com orientação' },
+] as const
+
+// ---- Adaptação Curricular ----
+export const ADAPTACAO_CURRICULAR_OPTIONS = [
+  { value: 'Significativa', label: 'Significativa' },
+  { value: 'Parcial', label: 'Parcial' },
+  { value: 'Sem adaptação', label: 'Sem adaptação' },
+] as const
+
+// ---- Status do Plano de Ensino ----
+export const STATUS_PLANO_OPTIONS = [
+  { value: 'Em elaboração', label: 'Em elaboração' },
+  { value: 'Em revisão', label: 'Em revisão' },
+  { value: 'Aprovado', label: 'Aprovado' },
+  { value: 'Em execução', label: 'Em execução' },
+  { value: 'Concluído', label: 'Concluído' },
+] as const
+
+// ---- Tipo de Relatório PDF ----
+export const TIPO_RELATORIO_PDF_OPTIONS = [
+  { value: 'desempenho_escolar', label: 'Desempenho Escolar' },
+  { value: 'familiar', label: 'Relatório Familiar' },
+  { value: 'psicologico', label: 'Relatório Psicológico' },
+  { value: 'evolucao_aprendizado', label: 'Evolução de Aprendizado' },
+  { value: 'plano_ensino', label: 'Plano de Ensino Personalizado' },
+] as const

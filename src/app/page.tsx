@@ -25,6 +25,7 @@ import CurriculumsModule from '@/components/modules/CurriculumsModule'
 import CognitiveProfilesModule from '@/components/modules/CognitiveProfilesModule'
 import RecordsModule from '@/components/modules/RecordsModule'
 import ReportsModule from '@/components/modules/ReportsModule'
+import TeachingPlansModule from '@/components/modules/TeachingPlansModule'
 import AIAssistantModule from '@/components/modules/AIAssistantModule'
 
 const NAV_ITEMS: { group: string; items: { id: ActiveModule; label: string; icon: React.ElementType }[] }[] = [
@@ -50,6 +51,7 @@ const NAV_ITEMS: { group: string; items: { id: ActiveModule; label: string; icon
       { id: 'classes', label: 'Turmas', icon: Users },
       { id: 'curriculums', label: 'Currículos', icon: BookOpen },
       { id: 'cognitive-profiles', label: 'Perfil Cognitivo', icon: Brain },
+      { id: 'teaching-plans', label: 'Planos de Ensino', icon: GraduationCap },
     ]
   },
   {
@@ -148,6 +150,7 @@ function ModuleContent() {
     'cognitive-profiles': <CognitiveProfilesModule />,
     'records': <RecordsModule />,
     'reports': <ReportsModule />,
+    'teaching-plans': <TeachingPlansModule />,
     'ai-assistant': <AIAssistantModule />,
   }
 
@@ -169,6 +172,7 @@ function Header() {
     'cognitive-profiles': 'Perfil Cognitivo Evolutivo',
     'records': 'Registros & Observações',
     'reports': 'Relatórios',
+    'teaching-plans': 'Planos de Ensino',
     'ai-assistant': 'Assistente de IA',
   }
 

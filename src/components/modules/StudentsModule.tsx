@@ -24,6 +24,15 @@ import {
   PARENTESCO_RESPONSAVEL_OPTIONS,
   ALIMENTACAO_OPTIONS,
   TIPO_SANGUINEO_OPTIONS,
+  NIVEL_LEITURA_OPTIONS,
+  NIVEL_ESCRITA_OPTIONS,
+  METODO_ALFABETIZACAO_OPTIONS,
+  ADAPTACAO_COMUNICACAO_OPTIONS,
+  RITMO_APRENDIZAGEM_OPTIONS,
+  NIVEL_FUNCIONAMENTO_OPTIONS,
+  NIVEL_AUTONOMIA_OPTIONS,
+  TIPO_APOIO_OPTIONS,
+  ADAPTACAO_CURRICULAR_OPTIONS,
 } from '@/lib/constants'
 import { toast } from 'sonner'
 
@@ -59,6 +68,8 @@ import {
   FileText,
   Loader2,
   AlertTriangle,
+  Eye,
+  Accessibility,
 } from 'lucide-react'
 
 // ─── Default empty form ──────────────────────────────────────────────────────
@@ -119,6 +130,31 @@ const emptyForm: StudentFormData = {
   modalidade: '',
   transporteEscolar: false,
   alimentacao: '',
+  analfabeto: false,
+  nivelLeitura: '',
+  nivelEscrita: '',
+  metodoAlfabetizacao: '',
+  materialVisual: false,
+  materialAudio: false,
+  materialTatil: false,
+  adaptacaoComunicacao: '',
+  apoioVisualSala: false,
+  instrucaoVerbal: false,
+  repeticaoReforco: false,
+  ritmoAprendizagem: '',
+  deficienciaIntelectual: false,
+  nivelFuncionamento: '',
+  nivelAutonomia: '',
+  tipoApoio: '',
+  rotinaVisual: false,
+  instrucaoSimplificada: false,
+  tarefasFragmentadas: false,
+  tempoEstendido: false,
+  avaliacaoAdaptada: false,
+  salaRecursosFreq: false,
+  adaptacaoCurricular: '',
+  pei: false,
+  peiDescricao: '',
   observacoes: '',
   ativo: true,
 }
@@ -249,6 +285,31 @@ export default function StudentsModule() {
             modalidade: s.modalidade || '',
             transporteEscolar: s.transporteEscolar,
             alimentacao: s.alimentacao || '',
+            analfabeto: s.analfabeto || false,
+            nivelLeitura: s.nivelLeitura || '',
+            nivelEscrita: s.nivelEscrita || '',
+            metodoAlfabetizacao: s.metodoAlfabetizacao || '',
+            materialVisual: s.materialVisual || false,
+            materialAudio: s.materialAudio || false,
+            materialTatil: s.materialTatil || false,
+            adaptacaoComunicacao: s.adaptacaoComunicacao || '',
+            apoioVisualSala: s.apoioVisualSala || false,
+            instrucaoVerbal: s.instrucaoVerbal || false,
+            repeticaoReforco: s.repeticaoReforco || false,
+            ritmoAprendizagem: s.ritmoAprendizagem || '',
+            deficienciaIntelectual: s.deficienciaIntelectual || false,
+            nivelFuncionamento: s.nivelFuncionamento || '',
+            nivelAutonomia: s.nivelAutonomia || '',
+            tipoApoio: s.tipoApoio || '',
+            rotinaVisual: s.rotinaVisual || false,
+            instrucaoSimplificada: s.instrucaoSimplificada || false,
+            tarefasFragmentadas: s.tarefasFragmentadas || false,
+            tempoEstendido: s.tempoEstendido || false,
+            avaliacaoAdaptada: s.avaliacaoAdaptada || false,
+            salaRecursosFreq: s.salaRecursosFreq || false,
+            adaptacaoCurricular: s.adaptacaoCurricular || '',
+            pei: s.pei || false,
+            peiDescricao: s.peiDescricao || '',
             observacoes: s.observacoes || '',
             ativo: s.ativo,
           })
@@ -633,6 +694,20 @@ export default function StudentsModule() {
                 <FileText className="w-3.5 h-3.5" />
                 <span>Obs.</span>
               </TabsTrigger>
+              {formData.analfabeto && (
+                <TabsTrigger value="adaptacao-analfabeto" className="gap-1.5 text-xs data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-lg px-3 py-2">
+                  <Eye className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Adaptações Analfabeto</span>
+                  <span className="sm:hidden">Analf.</span>
+                </TabsTrigger>
+              )}
+              {formData.deficienciaIntelectual && (
+                <TabsTrigger value="adaptacao-intelectual" className="gap-1.5 text-xs data-[state=active]:bg-white data-[state=active]:shadow-sm rounded-lg px-3 py-2">
+                  <Accessibility className="w-3.5 h-3.5" />
+                  <span className="hidden sm:inline">Adaptações Def. Intelectual</span>
+                  <span className="sm:hidden">Def.Int.</span>
+                </TabsTrigger>
+              )}
             </TabsList>
           </div>
 
@@ -924,6 +999,15 @@ export default function StudentsModule() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* Alert banner for dedicated tabs */}
+                {(formData.analfabeto || formData.deficienciaIntelectual) && (
+                  <div className="flex items-center gap-3 p-3 rounded-xl bg-amber-50 border border-amber-200">
+                    <AlertTriangle className="w-5 h-5 text-amber-600 shrink-0" />
+                    <p className="text-sm text-amber-800 font-medium">
+                      Adaptações específicas configuradas — consulte as abas dedicadas
+                    </p>
+                  </div>
+                )}
                 <div className="flex items-center justify-between p-4 rounded-xl bg-emerald-50/50 border border-emerald-100">
                   <div>
                     <Label className="text-sm font-medium">Necessidade Especial</Label>
@@ -1242,6 +1326,283 @@ export default function StudentsModule() {
                     className="min-h-[200px]"
                   />
                 </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+          {/* ─── Tab 9: Adaptações para Analfabetos ───────────────────────────── */}
+          <TabsContent value="adaptacao-analfabeto">
+            <Card className="border-0 shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Eye className="w-4 h-4 text-emerald-600" />
+                  Adaptações para Analfabetos
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-emerald-50/50 border border-emerald-100">
+                  <div>
+                    <Label className="text-sm font-medium">Aluno Analfabeto</Label>
+                    <p className="text-xs text-muted-foreground mt-0.5">O aluno é analfabeto ou está em processo de alfabetização?</p>
+                  </div>
+                  <Switch
+                    checked={formData.analfabeto}
+                    onCheckedChange={(v) => {
+                      updateField('analfabeto', v)
+                      if (!v) {
+                        updateField('nivelLeitura', '')
+                        updateField('nivelEscrita', '')
+                        updateField('metodoAlfabetizacao', '')
+                        updateField('materialVisual', false)
+                        updateField('materialAudio', false)
+                        updateField('materialTatil', false)
+                        updateField('adaptacaoComunicacao', '')
+                        updateField('apoioVisualSala', false)
+                        updateField('instrucaoVerbal', false)
+                        updateField('repeticaoReforco', false)
+                        updateField('ritmoAprendizagem', '')
+                      }
+                    }}
+                  />
+                </div>
+
+                {formData.analfabeto && (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-sm">Nível de Leitura</Label>
+                        <Select value={formData.nivelLeitura || ''} onValueChange={(v) => updateField('nivelLeitura', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {NIVEL_LEITURA_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm">Nível de Escrita</Label>
+                        <Select value={formData.nivelEscrita || ''} onValueChange={(v) => updateField('nivelEscrita', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {NIVEL_ESCRITA_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm">Método de Alfabetização</Label>
+                        <Select value={formData.metodoAlfabetizacao || ''} onValueChange={(v) => updateField('metodoAlfabetizacao', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {METODO_ALFABETIZACAO_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div>
+                      <p className="text-sm font-semibold text-muted-foreground mb-3">Recursos Didáticos</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Material Visual</Label>
+                          <Switch checked={formData.materialVisual || false} onCheckedChange={(v) => updateField('materialVisual', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Material Audio</Label>
+                          <Switch checked={formData.materialAudio || false} onCheckedChange={(v) => updateField('materialAudio', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Material Tátil</Label>
+                          <Switch checked={formData.materialTatil || false} onCheckedChange={(v) => updateField('materialTatil', v)} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-sm">Adaptação de Comunicação</Label>
+                        <Select value={formData.adaptacaoComunicacao || ''} onValueChange={(v) => updateField('adaptacaoComunicacao', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {ADAPTACAO_COMUNICACAO_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm">Ritmo de Aprendizagem</Label>
+                        <Select value={formData.ritmoAprendizagem || ''} onValueChange={(v) => updateField('ritmoAprendizagem', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {RITMO_APRENDIZAGEM_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="text-sm font-semibold text-muted-foreground mb-3">Estratégias em Sala</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Apoio Visual em Sala</Label>
+                          <Switch checked={formData.apoioVisualSala || false} onCheckedChange={(v) => updateField('apoioVisualSala', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Instrução Verbal</Label>
+                          <Switch checked={formData.instrucaoVerbal || false} onCheckedChange={(v) => updateField('instrucaoVerbal', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Repetição e Reforço</Label>
+                          <Switch checked={formData.repeticaoReforco || false} onCheckedChange={(v) => updateField('repeticaoReforco', v)} />
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* ─── Tab 10: Adaptações para Deficiente Intelectual ──────────────── */}
+          <TabsContent value="adaptacao-intelectual">
+            <Card className="border-0 shadow-sm">
+              <CardHeader className="pb-4">
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Accessibility className="w-4 h-4 text-emerald-600" />
+                  Adaptações para Deficiente Intelectual
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="flex items-center justify-between p-4 rounded-xl bg-emerald-50/50 border border-emerald-100">
+                  <div>
+                    <Label className="text-sm font-medium">Deficiência Intelectual</Label>
+                    <p className="text-xs text-muted-foreground mt-0.5">O aluno possui deficiência intelectual diagnosticada?</p>
+                  </div>
+                  <Switch
+                    checked={formData.deficienciaIntelectual}
+                    onCheckedChange={(v) => {
+                      updateField('deficienciaIntelectual', v)
+                      if (!v) {
+                        updateField('nivelFuncionamento', '')
+                        updateField('nivelAutonomia', '')
+                        updateField('tipoApoio', '')
+                        updateField('rotinaVisual', false)
+                        updateField('instrucaoSimplificada', false)
+                        updateField('tarefasFragmentadas', false)
+                        updateField('tempoEstendido', false)
+                        updateField('avaliacaoAdaptada', false)
+                        updateField('salaRecursosFreq', false)
+                        updateField('adaptacaoCurricular', '')
+                        updateField('pei', false)
+                        updateField('peiDescricao', '')
+                      }
+                    }}
+                  />
+                </div>
+
+                {formData.deficienciaIntelectual && (
+                  <>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-sm">Nível de Funcionamento</Label>
+                        <Select value={formData.nivelFuncionamento || ''} onValueChange={(v) => updateField('nivelFuncionamento', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {NIVEL_FUNCIONAMENTO_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm">Nível de Autonomia</Label>
+                        <Select value={formData.nivelAutonomia || ''} onValueChange={(v) => updateField('nivelAutonomia', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {NIVEL_AUTONOMIA_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="space-y-2">
+                        <Label className="text-sm">Tipo de Apoio</Label>
+                        <Select value={formData.tipoApoio || ''} onValueChange={(v) => updateField('tipoApoio', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {TIPO_APOIO_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                    </div>
+
+                    <Separator />
+
+                    <div>
+                      <p className="text-sm font-semibold text-muted-foreground mb-3">Adaptações Pedagógicas</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Rotina Visual</Label>
+                          <Switch checked={formData.rotinaVisual || false} onCheckedChange={(v) => updateField('rotinaVisual', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Instrução Simplificada</Label>
+                          <Switch checked={formData.instrucaoSimplificada || false} onCheckedChange={(v) => updateField('instrucaoSimplificada', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Tarefas Fragmentadas</Label>
+                          <Switch checked={formData.tarefasFragmentadas || false} onCheckedChange={(v) => updateField('tarefasFragmentadas', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Tempo Estendido</Label>
+                          <Switch checked={formData.tempoEstendido || false} onCheckedChange={(v) => updateField('tempoEstendido', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Avaliação Adaptada</Label>
+                          <Switch checked={formData.avaliacaoAdaptada || false} onCheckedChange={(v) => updateField('avaliacaoAdaptada', v)} />
+                        </div>
+                        <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                          <Label className="text-sm">Sala de Recursos</Label>
+                          <Switch checked={formData.salaRecursosFreq || false} onCheckedChange={(v) => updateField('salaRecursosFreq', v)} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label className="text-sm">Adaptação Curricular</Label>
+                        <Select value={formData.adaptacaoCurricular || ''} onValueChange={(v) => updateField('adaptacaoCurricular', v === '__none__' ? '' : v)}>
+                          <SelectTrigger><SelectValue placeholder="Selecione..." /></SelectTrigger>
+                          <SelectContent>
+                            <SelectItem value="__none__">Não informado</SelectItem>
+                            {ADAPTACAO_CURRICULAR_OPTIONS.map((o) => <SelectItem key={o.value} value={o.value}>{o.label}</SelectItem>)}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="flex items-center justify-between p-3 rounded-lg border border-border/50">
+                        <div>
+                          <Label className="text-sm font-medium">PEI</Label>
+                          <p className="text-xs text-muted-foreground">Plano Educacional Individualizado</p>
+                        </div>
+                        <Switch checked={formData.pei || false} onCheckedChange={(v) => { updateField('pei', v); if (!v) updateField('peiDescricao', '') }} />
+                      </div>
+                    </div>
+
+                    {formData.pei && (
+                      <div className="space-y-2">
+                        <Label className="text-sm">Descrição do PEI</Label>
+                        <Textarea
+                          value={formData.peiDescricao || ''}
+                          onChange={(e) => updateField('peiDescricao', e.target.value)}
+                          placeholder="Descreva o Plano Educacional Individualizado do aluno..."
+                          rows={4}
+                        />
+                      </div>
+                    )}
+                  </>
+                )}
               </CardContent>
             </Card>
           </TabsContent>

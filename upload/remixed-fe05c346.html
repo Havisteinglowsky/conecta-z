@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONECTA — Identidade Visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --azul-noite: #0A1628;
+    --azul-profundo: #0D2045;
+    --azul-meio: #1A3A6E;
+    --azul-vivo: #1E5EFF;
+    --laranja: #FF6B2B;
+    --laranja-claro: #FF8F5A;
+    --creme: #F5F0E8;
+    --off-white: #FAFAF7;
+    --cinza-suave: #E8E4DC;
+    --verde-neuro: #00D4A0;
+    --texto-escuro: #0A1628;
+    --fonte-display: 'Syne', sans-serif;
+    --fonte-texto: 'DM Sans', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--off-white);
+    color: var(--texto-escuro);
+    font-family: var(--fonte-texto);
+    overflow-x: hidden;
+  }
+
+  /* ========== CAPA ========== */
+  .capa {
+    background: var(--azul-noite);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .capa-esquerda {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .label-projeto {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+
+  .logo-lockup {
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.4s forwards;
+  }
+
+  .logo-conecta {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 8px;
+  }
+
+  .logo-icone {
+    width: 64px;
+    height: 64px;
+    margin-right: 16px;
+    flex-shrink: 0;
+  }
+
+  .logo-nome {
+    font-family: var(--fonte-display);
+    font-size: 72px;
+    font-weight: 800;
+    color: var(--off-white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .logo-nome span {
+    color: var(--laranja);
+  }
+
+  .logo-subtitulo {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.45);
+    margin-top: 12px;
+    padding-left: 2px;
+    line-height: 1.7;
+  }
+
+  .capa-tagline {
+    margin-top: 48px;
+    font-family: var(--fonte-display);
+    font-size: 22px;
+    font-weight: 400;
+    color: rgba(245,240,232,0.75);
+    line-height: 1.5;
+    max-width: 420px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.6s forwards;
+  }
+
+  .capa-tagline strong {
+    color: var(--off-white);
+    font-weight: 700;
+  }
+
+  .capa-direita {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .neuro-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    animation: fadeIn 1.5s ease 0.3s forwards;
+  }
+
+  .capa-badge {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    display: flex;
+    gap: 12px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1s forwards;
+    z-index: 3;
+  }
+
+  .badge {
+    font-family: var(--fonte-texto);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    border: 1px solid rgba(245,240,232,0.15);
+    padding: 6px 14px;
+    border-radius: 2px;
+  }
+
+  /* ========== SEÇÃO PALETA ========== */
+  .secao {
+    padding: 120px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .secao-label {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 16px;
+  }
+
+  .secao-titulo {
+    font-family: var(--fonte-display);
+    font-size: 48px;
+    font-weight: 700;
+    color: var(--azul-profundo);
+    margin-bottom: 60px;
+    line-height: 1.1;
+  }
+
+  /* PALETA */
+  .paleta-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 0.8fr;
+    gap: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    height: 280px;
+    margin-bottom: 32px;
+  }
+
+  .cor-bloco {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 24px 20px;
+    transition: flex 0.4s ease;
+    cursor: default;
+  }
+
+  .cor-bloco:hover { flex: 2; }
+
+  .cor-nome {
+    font-family: var(--fonte-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .cor-hex {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    opacity: 0.65;
+  }
+
+  .cor-desc {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    margin-top: 8px;
+    opacity: 0.7;
+    line-height: 1.4;
+  }
+
+  /* TIPOGRAFIA */
+  .tipo-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .tipo-card {
+    background: var(--azul-noite);
+    border-radius: 16px;
+    padding: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tipo-card::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(255,107,43,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .tipo-label {
+    font-family: var(--fonte-texto);
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--laranja);
+    margin-bottom: 24px;
+  }
+
+  .tipo-display {
+    font-family: var(--fonte-display);
+    font-size: 64px;
+    font-weight: 800;
+    color: var(--off-white);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+
+  .tipo-display span { color: var(--laranja); }
+
+  .tipo-alfabeto {
+    font-family: var(--fonte-display);
+    font-size: 15px;
+    color: rgba(245,240,232,0.35);
+    letter-spacing: 0.08em;
+    line-height: 2;
+  }
+
+  .tipo-body-demo {
+    font-family: var(--fonte-texto);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--off-white);
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .tipo-body-demo em {
+    font-style: italic;
+    color: var(--verde-neuro);
+  }
+
+  .tipo-body-small {
+    font-family: var(--fonte-texto);
+    font-size: 13px;
+    color: rgba(245,240,232,0.5);
+    line-height: 1.8;
+  }
+
+  /* ICONOGRAFIA */
+  .icones-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 60px;
+  }
+
+  .icone-card {
+    background: var(--creme);
+    border-radius: 12px;
+    padding: 36px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .icone-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(10,22,40,0.12);
+  }
+
+  .icone-card svg {
+    margin-bottom: 16px;
+  }
+
+  .icone-titulo {
+    font-family: var(--fonte-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--azul-profundo);
+    margin-bottom: 4px;
+  }
+
+  .icone-desc {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    color: rgba(10,22,40,0.5);
+    line-height: 1.5;
+  }
+
+  /* APLICAÇÕES */
+  .aplicacoes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .app-card {
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* MOCKUP DASHBOARD */
+  .mockup-dashboard {
+    background: var(--azul-noite);
+    padding: 32px;
+    min-height: 420px;
+  }
+
+  .dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(245,240,232,0.08);
+  }
+
+  .dash-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .dash-logo-text {
+    font-family: var(--fonte-display);
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--off-white);
+    letter-spacing: -0.01em;
+  }
+
+  .dash-logo-text span { color: var(--laranja); }
+
+  .dash-avatar {
+    width: 32px;
+    height: 32px;
+    background: var(--azul-meio);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fonte-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--off-white);
+  }
+
+  .dash-nav {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+
+  .dash-nav-item {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    color: rgba(245,240,232,0.45);
+    cursor: pointer;
+  }
+
+  .dash-nav-item.ativo {
+    background: rgba(30,94,255,0.2);
+    color: #6B9FFF;
+  }
+
+  .dash-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .dash-metric {
+    background: rgba(245,240,232,0.04);
+    border: 1px solid rgba(245,240,232,0.06);
+    border-radius: 10px;
+    padding: 16px;
+  }
+
+  .dash-metric-label {
+    font-family: var(--fonte-texto);
+    font-size: 10px;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 8px;
+  }
+
+  .dash-metric-valor {
+    font-family: var(--fonte-display);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--off-white);
+    line-height: 1;
+  }
+
+  .dash-metric-delta {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    color: var(--verde-neuro);
+    margin-top: 4px;
+  }
+
+  .dash-grafico {
+    background: rgba(245,240,232,0.03);
+    border: 1px solid rgba(245,240,232,0.06);
+    border-radius: 10px;
+    padding: 16px;
+    height: 100px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dash-grafico-label {
+    font-family: var(--fonte-texto);
+    font-size: 10px;
+    color: rgba(245,240,232,0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+
+  /* MOCKUP RELATORIO */
+  .mockup-relatorio {
+    background: var(--creme);
+    padding: 36px;
+    min-height: 420px;
+  }
+
+  .rel-header {
+    border-bottom: 2px solid var(--azul-profundo);
+    padding-bottom: 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .rel-logo-text {
+    font-family: var(--fonte-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--azul-profundo);
+    letter-spacing: -0.01em;
+  }
+
+  .rel-logo-text span { color: var(--laranja); }
+
+  .rel-data {
+    font-family: var(--fonte-texto);
+    font-size: 11px;
+    color: rgba(10,22,40,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .rel-titulo {
+    font-family: var(--fonte-display);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--azul-profundo);
+    margin-bottom: 6px;
+  }
+
+  .rel-subtitulo {
+    font-family: var(--fonte-texto);
+    font-size: 12px;
+    color: rgba(10,22,40,0.5);
+    margin-bottom: 24px;
+  }
+
+  .rel-pce {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .pce-item {
+    background: white;
+    border-radius: 8px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .pce-area {
+    font-family: var(--fonte-texto);
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(10,22,40,0.4);
+    margin-bottom: 8px;
+  }
+
+  .pce-barra-bg {
+    background: var(--cinza-suave);
+    border-radius: 4px;
+    height: 6px;
+    overflow: hidden;
+    margin-bottom: 6px;
+  }
+
+  .pce-barra-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: var(--laranja);
+  }
+
+  .pce-valor {
+    font-family: var(--fonte-display);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--azul-profundo);
+  }
+
+  /* LOGO VARIAÇÕES */
+  .logos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 60px;
+  }
+
+  .logo-card {
+    border-radius: 12px;
+    padding: 48px 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .logo-card-label {
+    font-family: var(--fonte-texto);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+
+  /* MANIFESTO */
+  .manifesto-bloco {
+    background: var(--azul-noite);
+    border-radius: 20px;
+    padding: 80px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+
+  .manifesto-bloco::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,107,43,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .manifesto-bloco::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: 100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(30,94,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .manifesto-texto {
+    font-family: var(--fonte-display);
+    font-size: 36px;
+    font-weight: 400;
+    color: var(--off-white);
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+  }
+
+  .manifesto-texto strong {
+    color: var(--laranja);
+    font-weight: 700;
+  }
+
+  .manifesto-texto em {
+    color: var(--verde-neuro);
+    font-style: normal;
+  }
+
+  .manifesto-assinatura {
+    position: relative;
+    z-index: 1;
+    margin-top: 40px;
+    font-family: var(--fonte-texto);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.35);
+  }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--cinza-suave), transparent);
+    margin: 20px 0;
+  }
+
+  .secao-dark {
+    background: var(--azul-noite);
+    padding: 120px 0;
+  }
+
+  .secao-dark .secao-titulo {
+    color: var(--off-white);
+  }
+
+  /* ANIMAÇÕES */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes pulseSinapse {
+    0%, 100% { opacity: 0.3; r: 4; }
+    50% { opacity: 1; r: 7; }
+  }
+
+  @keyframes fluxo {
+    0% { stroke-dashoffset: 200; opacity: 0; }
+    30% { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 0.6; }
+  }
+
+  .linha-fluxo {
+    stroke-dasharray: 200;
+    animation: fluxo 3s ease infinite;
+  }
+
+  .linha-fluxo:nth-child(2) { animation-delay: 0.5s; }
+  .linha-fluxo:nth-child(3) { animation-delay: 1s; }
+  .linha-fluxo:nth-child(4) { animation-delay: 1.5s; }
+  .linha-fluxo:nth-child(5) { animation-delay: 2s; }
+
+  .no-sinapse {
+    animation: pulseSinapse 2s ease infinite;
+  }
+
+  .no-sinapse:nth-child(odd) { animation-delay: 0.6s; }
+  .no-sinapse:nth-child(3) { animation-delay: 1.2s; }
+
+</style>
+</head>
+<body>
+
+<!-- ========= CAPA ========= -->
+<div class="capa">
+  <div class="capa-esquerda">
+    <div class="label-projeto">Identidade Visual — Sistema Educacional</div>
+    <div class="logo-lockup">
+      <div class="logo-conecta">
+        <!-- Logo mark: nó de rede neural estilizado -->
+        <svg class="logo-icone" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Nós -->
+          <circle cx="32" cy="12" r="5" fill="#FF6B2B"/>
+          <circle cx="52" cy="36" r="4" fill="#1E5EFF"/>
+          <circle cx="40" cy="54" r="4" fill="#00D4A0"/>
+          <circle cx="20" cy="50" r="4" fill="#1E5EFF"/>
+          <circle cx="10" cy="30" r="4" fill="#FF6B2B" opacity="0.7"/>
+          <circle cx="32" cy="32" r="7" fill="none" stroke="#FF6B2B" stroke-width="2"/>
+          <circle cx="32" cy="32" r="3" fill="#FF6B2B"/>
+          <!-- Conexões -->
+          <line x1="32" y1="17" x2="32" y2="25" stroke="rgba(245,240,232,0.3)" stroke-width="1.5"/>
+          <line x1="37" y1="32" x2="48" y2="34" stroke="rgba(245,240,232,0.3)" stroke-width="1.5"/>
+          <line x1="36" y1="37" x2="38" y2="51" stroke="rgba(245,240,232,0.3)" stroke-width="1.5"/>
+          <line x1="28" y1="37" x2="22" y2="48" stroke="rgba(245,240,232,0.3)" stroke-width="1.5"/>
+          <line x1="27" y1="30" x2="14" y2="30" stroke="rgba(245,240,232,0.3)" stroke-width="1.5"/>
+        </svg>
+        <div class="logo-nome">CON<span>EC</span>TA</div>
+      </div>
+      <div class="logo-subtitulo">
+        Central de Otimização e Neuroeducação para<br>
+        Evolução Cognitiva com Tecnologia Adaptativa
+      </div>
+    </div>
+    <div class="capa-tagline">
+      <strong>Cada cérebro tem seu ritmo.</strong><br>
+      A tecnologia que conecta escola, família e clínica para amplificar o potencial de cada aluno.
+    </div>
+    <div class="capa-badge">
+      <div class="badge">Psicologia Escolar</div>
+      <div class="badge">Neuroeducação</div>
+      <div class="badge">IA Adaptativa</div>
+    </div>
+  </div>
+
+  <div class="capa-direita">
+    <svg class="neuro-bg" viewBox="0 0 700 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Grade de fundo sutil -->
+      <defs>
+        <radialGradient id="glow1" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#1E5EFF" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#1E5EFF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow2" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FF6B2B" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#FF6B2B" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="glow3" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00D4A0" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#00D4A0" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Glows de fundo -->
+      <ellipse cx="350" cy="300" rx="250" ry="250" fill="url(#glow1)"/>
+      <ellipse cx="500" cy="600" rx="180" ry="180" fill="url(#glow2)"/>
+      <ellipse cx="150" cy="550" rx="150" ry="150" fill="url(#glow3)"/>
+
+      <!-- Rede neural grande -->
+      <!-- Nós principais -->
+      <circle cx="350" cy="180" r="14" fill="#FF6B2B" opacity="0.9"/>
+      <circle cx="200" cy="280" r="10" fill="#1E5EFF" opacity="0.8"/>
+      <circle cx="480" cy="260" r="12" fill="#1E5EFF" opacity="0.8"/>
+      <circle cx="140" cy="420" r="8" fill="#FF6B2B" opacity="0.6"/>
+      <circle cx="300" cy="360" r="9" fill="#00D4A0" opacity="0.9"/>
+      <circle cx="440" cy="400" r="11" fill="#FF6B2B" opacity="0.7"/>
+      <circle cx="550" cy="350" r="7" fill="#00D4A0" opacity="0.8"/>
+      <circle cx="200" cy="520" r="8" fill="#1E5EFF" opacity="0.7"/>
+      <circle cx="380" cy="500" r="13" fill="#FF6B2B" opacity="0.8"/>
+      <circle cx="510" cy="500" r="7" fill="#1E5EFF" opacity="0.6"/>
+      <circle cx="280" cy="640" r="9" fill="#00D4A0" opacity="0.7"/>
+      <circle cx="450" cy="620" r="10" fill="#FF6B2B" opacity="0.6"/>
+      <circle cx="600" cy="450" r="6" fill="#1E5EFF" opacity="0.5"/>
+      <circle cx="100" cy="600" r="6" fill="#FF6B2B" opacity="0.4"/>
+      <circle cx="350" cy="730" r="8" fill="#1E5EFF" opacity="0.5"/>
+
+      <!-- Nós satélite menores -->
+      <circle cx="260" cy="210" r="4" fill="rgba(245,240,232,0.2)"/>
+      <circle cx="420" cy="170" r="4" fill="rgba(245,240,232,0.2)"/>
+      <circle cx="580" cy="300" r="4" fill="rgba(245,240,232,0.15)"/>
+      <circle cx="170" cy="360" r="3" fill="rgba(245,240,232,0.15)"/>
+      <circle cx="330" cy="460" r="3" fill="rgba(245,240,232,0.2)"/>
+      <circle cx="490" cy="570" r="3" fill="rgba(245,240,232,0.15)"/>
+      <circle cx="240" cy="580" r="3" fill="rgba(245,240,232,0.1)"/>
+
+      <!-- Conexões / axônios -->
+      <line x1="350" y1="180" x2="200" y2="280" stroke="rgba(30,94,255,0.3)" stroke-width="1.5"/>
+      <line x1="350" y1="180" x2="480" y2="260" stroke="rgba(30,94,255,0.3)" stroke-width="1.5"/>
+      <line x1="350" y1="180" x2="300" y2="360" stroke="rgba(255,107,43,0.25)" stroke-width="1"/>
+      <line x1="200" y1="280" x2="140" y2="420" stroke="rgba(30,94,255,0.2)" stroke-width="1"/>
+      <line x1="200" y1="280" x2="300" y2="360" stroke="rgba(0,212,160,0.3)" stroke-width="1.5"/>
+      <line x1="480" y1="260" x2="440" y2="400" stroke="rgba(30,94,255,0.25)" stroke-width="1"/>
+      <line x1="480" y1="260" x2="550" y2="350" stroke="rgba(0,212,160,0.2)" stroke-width="1"/>
+      <line x1="300" y1="360" x2="440" y2="400" stroke="rgba(255,107,43,0.3)" stroke-width="1.5"/>
+      <line x1="300" y1="360" x2="200" y2="520" stroke="rgba(30,94,255,0.2)" stroke-width="1"/>
+      <line x1="440" y1="400" x2="380" y2="500" stroke="rgba(255,107,43,0.35)" stroke-width="1.5"/>
+      <line x1="440" y1="400" x2="510" y2="500" stroke="rgba(30,94,255,0.2)" stroke-width="1"/>
+      <line x1="550" y1="350" x2="600" y2="450" stroke="rgba(30,94,255,0.2)" stroke-width="1"/>
+      <line x1="380" y1="500" x2="280" y2="640" stroke="rgba(0,212,160,0.25)" stroke-width="1"/>
+      <line x1="380" y1="500" x2="450" y2="620" stroke="rgba(255,107,43,0.25)" stroke-width="1"/>
+      <line x1="200" y1="520" x2="100" y2="600" stroke="rgba(30,94,255,0.15)" stroke-width="1"/>
+      <line x1="200" y1="520" x2="280" y2="640" stroke="rgba(0,212,160,0.2)" stroke-width="1"/>
+      <line x1="280" y1="640" x2="350" y2="730" stroke="rgba(30,94,255,0.2)" stroke-width="1"/>
+      <line x1="450" y1="620" x2="350" y2="730" stroke="rgba(255,107,43,0.2)" stroke-width="1"/>
+
+      <!-- Pulsos animados sobre conexões chave -->
+      <line class="linha-fluxo" x1="350" y1="180" x2="480" y2="260" stroke="#FF6B2B" stroke-width="2.5"/>
+      <line class="linha-fluxo" x1="300" y1="360" x2="440" y2="400" stroke="#FF6B2B" stroke-width="2.5"/>
+      <line class="linha-fluxo" x1="480" y1="260" x2="440" y2="400" stroke="#1E5EFF" stroke-width="2"/>
+      <line class="linha-fluxo" x1="440" y1="400" x2="380" y2="500" stroke="#FF6B2B" stroke-width="2"/>
+      <line class="linha-fluxo" x1="200" y1="280" x2="300" y2="360" stroke="#00D4A0" stroke-width="2"/>
+
+      <!-- Nós pulsantes -->
+      <circle class="no-sinapse" cx="350" cy="180" r="4" fill="#FF8F5A"/>
+      <circle class="no-sinapse" cx="440" cy="400" r="5" fill="#FF8F5A"/>
+      <circle class="no-sinapse" cx="300" cy="360" r="4" fill="#00D4A0"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ========= SEÇÃO PALETA ========= -->
+<div style="background: var(--off-white);">
+  <div class="secao">
+    <div class="secao-label">01 — Paleta de Cores</div>
+    <div class="secao-titulo">Cada cor carrega<br>um significado</div>
+
+    <div class="paleta-grid">
+      <div class="cor-bloco" style="background: var(--azul-noite); color: var(--off-white);">
+        <div class="cor-nome">Azul Noite</div>
+        <div class="cor-hex">#0A1628</div>
+        <div class="cor-desc">O substrato. A profundidade do saber. Presente em fundos, cabeçalhos e áreas de alta hierarquia.</div>
+      </div>
+      <div class="cor-bloco" style="background: var(--azul-vivo); color: var(--off-white);">
+        <div class="cor-nome">Azul Vivo</div>
+        <div class="cor-hex">#1E5EFF</div>
+        <div class="cor-desc">A tecnologia. Ações primárias, links, CTAs.</div>
+      </div>
+      <div class="cor-bloco" style="background: var(--laranja); color: var(--off-white);">
+        <div class="cor-nome">Laranja Neural</div>
+        <div class="cor-hex">#FF6B2B</div>
+        <div class="cor-desc">O neurônio em ação. Destaque, energia, progresso.</div>
+      </div>
+      <div class="cor-bloco" style="background: var(--verde-neuro); color: var(--azul-noite);">
+        <div class="cor-nome">Verde Cognitivo</div>
+        <div class="cor-hex">#00D4A0</div>
+        <div class="cor-desc">Evolução, métricas positivas.</div>
+      </div>
+      <div class="cor-bloco" style="background: var(--creme); color: var(--azul-profundo);">
+        <div class="cor-nome">Creme</div>
+        <div class="cor-hex">#F5F0E8</div>
+        <div class="cor-desc">Acolhimento. Fundos e documentos.</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TIPOGRAFIA -->
+    <div style="margin-top: 80px;">
+      <div class="secao-label">02 — Tipografia</div>
+      <div class="secao-titulo">Voz que ensina,<br>design que acolhe</div>
+
+      <div class="tipo-showcase">
+        <div class="tipo-card">
+          <div class="tipo-label">Syne — Display / Títulos</div>
+          <div class="tipo-display">CON<span>EC</span>TA</div>
+          <div class="tipo-alfabeto">ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>0123456789 — !</div>
+        </div>
+        <div class="tipo-card">
+          <div class="tipo-label">DM Sans — Corpo / Interface</div>
+          <div class="tipo-body-demo">O aprendizado não é <em>linear.</em><br>É uma rede em construção.</div>
+          <div class="tipo-body-small">
+            Regular: relatórios, descrições, textos longos.<br>
+            Light Italic: ênfase delicada, callouts.<br>
+            Medium: labels de interface e métricas.<br><br>
+            "A neuroeducação parte da premissa de que cada perfil cognitivo<br>
+            é único e merece uma mediação igualmente singular."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ICONOGRAFIA -->
+    <div style="margin-top: 80px;">
+      <div class="secao-label">03 — Iconografia e Símbolos</div>
+      <div class="secao-titulo">Os pilares visuais<br>do ecossistema</div>
+
+      <div class="icones-grid">
+        <div class="icone-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="14" r="6" fill="#FF6B2B" opacity="0.15"/>
+            <circle cx="24" cy="14" r="4" stroke="#FF6B2B" stroke-width="2"/>
+            <circle cx="10" cy="34" r="4" stroke="#1E5EFF" stroke-width="2"/>
+            <circle cx="38" cy="34" r="4" stroke="#1E5EFF" stroke-width="2"/>
+            <circle cx="24" cy="34" r="3" fill="#00D4A0" opacity="0.8"/>
+            <line x1="24" y1="18" x2="24" y2="31" stroke="#0A1628" stroke-width="1.5" opacity="0.3"/>
+            <line x1="24" y1="31" x2="12" y2="32" stroke="#1E5EFF" stroke-width="1.5" opacity="0.5"/>
+            <line x1="24" y1="31" x2="36" y2="32" stroke="#1E5EFF" stroke-width="1.5" opacity="0.5"/>
+          </svg>
+          <div class="icone-titulo">Tríade CONECTA</div>
+          <div class="icone-desc">Escola · Família · Psicólogo</div>
+        </div>
+        <div class="icone-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="6" y="6" width="36" height="36" rx="4" stroke="#0A1628" stroke-width="1.5" opacity="0.15" fill="#FF6B2B" fill-opacity="0.06"/>
+            <path d="M12 32 L18 22 L24 26 L30 16 L36 20" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="36" cy="20" r="3" fill="#FF6B2B"/>
+            <line x1="12" y1="36" x2="36" y2="36" stroke="#0A1628" stroke-width="1" opacity="0.2"/>
+          </svg>
+          <div class="icone-titulo">PCE</div>
+          <div class="icone-desc">Perfil Cognitivo Evolutivo</div>
+        </div>
+        <div class="icone-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <path d="M24 8 C14 8 8 16 8 24 C8 32 14 40 24 40 C34 40 40 32 40 24" stroke="#1E5EFF" stroke-width="2" stroke-linecap="round" fill="none"/>
+            <path d="M32 8 L40 8 L40 16" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M40 8 L28 20" stroke="#FF6B2B" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="24" cy="24" r="4" fill="#00D4A0" opacity="0.8"/>
+          </svg>
+          <div class="icone-titulo">IA Adaptativa</div>
+          <div class="icone-desc">Motor de sugestão pedagógica</div>
+        </div>
+        <div class="icone-card">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <rect x="8" y="12" width="32" height="24" rx="3" stroke="#0A1628" stroke-width="1.5" opacity="0.2" fill="#1E5EFF" fill-opacity="0.07"/>
+            <line x1="14" y1="20" x2="34" y2="20" stroke="#0A1628" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+            <line x1="14" y1="25" x2="28" y2="25" stroke="#FF6B2B" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="14" y1="30" x2="24" y2="30" stroke="#0A1628" stroke-width="1.5" stroke-linecap="round" opacity="0.2"/>
+            <circle cx="36" cy="25" r="6" fill="#00D4A0" opacity="0.2"/>
+            <path d="M33 25 L35.5 27.5 L39.5 22.5" stroke="#00D4A0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <div class="icone-titulo">Relatório Familiar</div>
+          <div class="icone-desc">Comunicação acessível aos pais</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========= SEÇÃO ESCURA: APLICAÇÕES ========= -->
+<div class="secao-dark">
+  <div class="secao" style="padding-top: 0;">
+    <div class="secao-label">04 — Aplicações da Marca</div>
+    <div class="secao-titulo">A identidade em contexto</div>
+
+    <div class="aplicacoes-grid">
+      <!-- Mockup Dashboard -->
+      <div class="app-card">
+        <div class="mockup-dashboard">
+          <div class="dash-header">
+            <div class="dash-logo">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="5" r="2.5" fill="#FF6B2B"/>
+                <circle cx="19" cy="14" r="2" fill="#1E5EFF" opacity="0.8"/>
+                <circle cx="12" cy="12" r="2" fill="#FF6B2B" opacity="0.9"/>
+                <circle cx="5" cy="14" r="2" fill="#1E5EFF" opacity="0.8"/>
+                <line x1="12" y1="7.5" x2="12" y2="10" stroke="rgba(245,240,232,0.3)" stroke-width="1.2"/>
+                <line x1="14" y1="12" x2="17" y2="13" stroke="rgba(245,240,232,0.3)" stroke-width="1.2"/>
+                <line x1="10" y1="12" x2="7" y2="13" stroke="rgba(245,240,232,0.3)" stroke-width="1.2"/>
+              </svg>
+              <div class="dash-logo-text">CON<span>EC</span>TA</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;">
+              <div style="width:6px;height:6px;border-radius:50%;background:var(--verde-neuro);"></div>
+              <span style="font-size:11px;color:rgba(245,240,232,0.4);font-family:var(--fonte-texto)">Sistema ativo</span>
+              <div class="dash-avatar">PS</div>
+            </div>
+          </div>
+
+          <div class="dash-nav">
+            <div class="dash-nav-item ativo">Painel Geral</div>
+            <div class="dash-nav-item">Alunos</div>
+            <div class="dash-nav-item">Relatórios</div>
+            <div class="dash-nav-item">Co-criação IA</div>
+          </div>
+
+          <div class="dash-cards">
+            <div class="dash-metric">
+              <div class="dash-metric-label">Alunos Monitorados</div>
+              <div class="dash-metric-valor">47</div>
+              <div class="dash-metric-delta">↑ 3 este mês</div>
+            </div>
+            <div class="dash-metric">
+              <div class="dash-metric-label">Engajamento Médio</div>
+              <div class="dash-metric-valor">78<span style="font-size:14px;opacity:0.5">%</span></div>
+              <div class="dash-metric-delta">↑ 12% vs anterior</div>
+            </div>
+            <div class="dash-metric">
+              <div class="dash-metric-label">Alertas PCE</div>
+              <div class="dash-metric-valor" style="color:var(--laranja);">2</div>
+              <div class="dash-metric-delta" style="color:var(--laranja-claro);">⚠ Requer atenção</div>
+            </div>
+          </div>
+
+          <div class="dash-grafico">
+            <div class="dash-grafico-label">Evolução Cognitiva — Turma 4A</div>
+            <svg width="100%" height="56" viewBox="0 0 400 56" preserveAspectRatio="none">
+              <path d="M0,45 C30,40 60,35 90,30 C120,25 150,32 180,22 C210,14 240,18 270,12 C300,6 330,14 360,8 L400,5" fill="none" stroke="var(--verde-neuro)" stroke-width="2" opacity="0.8"/>
+              <path d="M0,45 C30,40 60,35 90,30 C120,25 150,32 180,22 C210,14 240,18 270,12 C300,6 330,14 360,8 L400,5 L400,56 L0,56 Z" fill="var(--verde-neuro)" fill-opacity="0.06"/>
+              <circle cx="360" cy="8" r="4" fill="var(--verde-neuro)" opacity="0.9"/>
+            </svg>
+          </div>
+        </div>
+        <div style="background:rgba(245,240,232,0.04);padding:12px 32px;border-top:1px solid rgba(245,240,232,0.06);">
+          <span style="font-family:var(--fonte-texto);font-size:11px;color:rgba(245,240,232,0.35);letter-spacing:0.1em;text-transform:uppercase;">Painel do Psicólogo Escolar</span>
+        </div>
+      </div>
+
+      <!-- Mockup Relatório -->
+      <div class="app-card">
+        <div class="mockup-relatorio">
+          <div class="rel-header">
+            <div>
+              <div class="rel-logo-text">CON<span>EC</span>TA</div>
+            </div>
+            <div class="rel-data">Relatório Familiar · Maio 2026</div>
+          </div>
+          <div class="rel-titulo">Olá, família do Lucas! 👋</div>
+          <div class="rel-subtitulo">Perfil Cognitivo Evolutivo — atualizado em 19/05/2026</div>
+
+          <div class="rel-pce">
+            <div class="pce-item">
+              <div class="pce-area">Atenção</div>
+              <div class="pce-barra-bg"><div class="pce-barra-fill" style="width:72%;background:var(--laranja);"></div></div>
+              <div class="pce-valor">72%</div>
+            </div>
+            <div class="pce-item">
+              <div class="pce-area">Leitura</div>
+              <div class="pce-barra-bg"><div class="pce-barra-fill" style="width:85%;background:var(--verde-neuro);"></div></div>
+              <div class="pce-valor" style="color:var(--azul-meio)">85%</div>
+            </div>
+            <div class="pce-item">
+              <div class="pce-area">Matemática</div>
+              <div class="pce-barra-bg"><div class="pce-barra-fill" style="width:58%;"></div></div>
+              <div class="pce-valor">58%</div>
+            </div>
+            <div class="pce-item">
+              <div class="pce-area">Interação</div>
+              <div class="pce-barra-bg"><div class="pce-barra-fill" style="width:90%;background:var(--verde-neuro);"></div></div>
+              <div class="pce-valor" style="color:var(--azul-meio)">90%</div>
+            </div>
+          </div>
+
+          <div style="background:white;border-radius:10px;padding:20px;margin-bottom:16px;">
+            <div style="font-family:var(--fonte-display);font-size:13px;font-weight:700;color:var(--azul-profundo);margin-bottom:8px;">💡 O que você pode fazer em casa</div>
+            <div style="font-family:var(--fonte-texto);font-size:12px;color:rgba(10,22,40,0.65);line-height:1.6;">
+              Esta semana, o Lucas demonstrou grande progresso em <strong>compreensão oral</strong>. 
+              Reforce lendo histórias juntos por 10 minutos antes de dormir e peça que ele recontou o que entendeu.
+            </div>
+          </div>
+
+          <div style="display:flex;gap:10px;">
+            <div style="flex:1;background:rgba(255,107,43,0.08);border:1px solid rgba(255,107,43,0.2);border-radius:8px;padding:14px;text-align:center;">
+              <div style="font-family:var(--fonte-display);font-size:20px;font-weight:700;color:var(--laranja);">↑ 14%</div>
+              <div style="font-family:var(--fonte-texto);font-size:10px;color:rgba(10,22,40,0.5);text-transform:uppercase;letter-spacing:0.1em;">Melhora no mês</div>
+            </div>
+            <div style="flex:1;background:rgba(0,212,160,0.08);border:1px solid rgba(0,212,160,0.2);border-radius:8px;padding:14px;text-align:center;">
+              <div style="font-family:var(--fonte-display);font-size:20px;font-weight:700;color:var(--verde-neuro);">3 🌟</div>
+              <div style="font-family:var(--fonte-texto);font-size:10px;color:rgba(10,22,40,0.5);text-transform:uppercase;letter-spacing:0.1em;">Conquistas novas</div>
+            </div>
+          </div>
+        </div>
+        <div style="background:var(--cinza-suave);padding:12px 32px;border-top:1px solid rgba(10,22,40,0.08);">
+          <span style="font-family:var(--fonte-texto);font-size:11px;color:rgba(10,22,40,0.4);letter-spacing:0.1em;text-transform:uppercase;">Painel da Família</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGO VARIAÇÕES -->
+    <div style="margin-top: 80px;">
+      <div class="secao-label">05 — Variações do Logotipo</div>
+      <div class="secao-titulo">Adaptável a cada contexto</div>
+
+      <div class="logos-grid">
+        <!-- Versão Escura Principal -->
+        <div class="logo-card" style="background: var(--azul-noite);">
+          <svg width="56" height="56" viewBox="0 0 56 56" fill="none">
+            <circle cx="28" cy="12" r="5" fill="#FF6B2B"/>
+            <circle cx="44" cy="32" r="4" fill="#1E5EFF"/>
+            <circle cx="34" cy="47" r="4" fill="#00D4A0"/>
+            <circle cx="18" cy="44" r="4" fill="#1E5EFF"/>
+            <circle cx="9" cy="27" r="4" fill="#FF6B2B" opacity="0.6"/>
+            <circle cx="28" cy="28" r="7" fill="none" stroke="#FF6B2B" stroke-width="2"/>
+            <circle cx="28" cy="28" r="3" fill="#FF6B2B"/>
+            <line x1="28" y1="17" x2="28" y2="21" stroke="rgba(245,240,232,0.35)" stroke-width="1.5"/>
+            <line x1="35" y1="28" x2="40" y2="30" stroke="rgba(245,240,232,0.35)" stroke-width="1.5"/>
+            <line x1="33" y1="33" x2="33" y2="44" stroke="rgba(245,240,232,0.35)" stroke-width="1.5"/>
+            <line x1="23" y1="33" x2="20" y2="42" stroke="rgba(245,240,232,0.35)" stroke-width="1.5"/>
+            <line x1="21" y1="28" x2="13" y2="27" stroke="rgba(245,240,232,0.35)" stroke-width="1.5"/>
+          </svg>
+          <div style="font-family:var(--fonte-display);font-size:28px;font-weight:800;color:var(--off-white);letter-spacing:-0.01em;">
+            CON<span style="color:var(--laranja)">EC</span>TA
+          </div>
+          <div style="font-family:var(--fonte-texto);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(245,240,232,0.3);max-width:180px;text-align:center;line-height:1.7;">
+            Central de Otimização e Neuroeducação
+          </div>
+          <div class="logo-card-label" style="color:rgba(245,240,232,0.2);">Versão Principal — Fundo Escuro</div>
+        </div>
+
+        <!-- Versão Clara -->
+        <div class="logo-card" style="background: var(--creme);">
+          <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+            <circle cx="28" cy="12" r="5" fill="#FF6B2B"/>
+            <circle cx="44" cy="32" r="4" fill="#1A3A6E"/>
+            <circle cx="34" cy="47" r="4" fill="#00D4A0"/>
+            <circle cx="18" cy="44" r="4" fill="#1A3A6E"/>
+            <circle cx="9" cy="27" r="4" fill="#FF6B2B" opacity="0.5"/>
+            <circle cx="28" cy="28" r="7" fill="none" stroke="#FF6B2B" stroke-width="2"/>
+            <circle cx="28" cy="28" r="3" fill="#FF6B2B"/>
+            <line x1="28" y1="17" x2="28" y2="21" stroke="rgba(10,22,40,0.2)" stroke-width="1.5"/>
+            <line x1="35" y1="28" x2="40" y2="30" stroke="rgba(10,22,40,0.2)" stroke-width="1.5"/>
+            <line x1="33" y1="33" x2="33" y2="44" stroke="rgba(10,22,40,0.2)" stroke-width="1.5"/>
+            <line x1="23" y1="33" x2="20" y2="42" stroke="rgba(10,22,40,0.2)" stroke-width="1.5"/>
+            <line x1="21" y1="28" x2="13" y2="27" stroke="rgba(10,22,40,0.2)" stroke-width="1.5"/>
+          </svg>
+          <div style="font-family:var(--fonte-display);font-size:28px;font-weight:800;color:var(--azul-profundo);letter-spacing:-0.01em;">
+            CON<span style="color:var(--laranja)">EC</span>TA
+          </div>
+          <div style="font-family:var(--fonte-texto);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(10,22,40,0.35);max-width:180px;text-align:center;line-height:1.7;">
+            Central de Otimização e Neuroeducação
+          </div>
+          <div class="logo-card-label" style="color:rgba(10,22,40,0.25);">Versão Secundária — Fundo Claro</div>
+        </div>
+
+        <!-- Versão Laranja / Accent -->
+        <div class="logo-card" style="background: var(--laranja); position:relative;overflow:hidden;">
+          <div style="position:absolute;top:-40px;right:-40px;width:160px;height:160px;background:rgba(255,255,255,0.1);border-radius:50%;"></div>
+          <svg width="48" height="48" viewBox="0 0 56 56" fill="none">
+            <circle cx="28" cy="12" r="5" fill="white"/>
+            <circle cx="44" cy="32" r="4" fill="white" opacity="0.7"/>
+            <circle cx="34" cy="47" r="4" fill="white" opacity="0.7"/>
+            <circle cx="18" cy="44" r="4" fill="white" opacity="0.7"/>
+            <circle cx="9" cy="27" r="4" fill="white" opacity="0.5"/>
+            <circle cx="28" cy="28" r="7" fill="none" stroke="white" stroke-width="2" opacity="0.8"/>
+            <circle cx="28" cy="28" r="3" fill="white"/>
+            <line x1="28" y1="17" x2="28" y2="21" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <line x1="35" y1="28" x2="40" y2="30" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <line x1="33" y1="33" x2="33" y2="44" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <line x1="23" y1="33" x2="20" y2="42" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+            <line x1="21" y1="28" x2="13" y2="27" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          </svg>
+          <div style="font-family:var(--fonte-display);font-size:28px;font-weight:800;color:white;letter-spacing:-0.01em;position:relative;z-index:1;">
+            CONECTA
+          </div>
+          <div style="font-family:var(--fonte-texto);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.6);max-width:180px;text-align:center;line-height:1.7;position:relative;z-index:1;">
+            Neuroeducação Adaptativa
+          </div>
+          <div class="logo-card-label" style="color:rgba(255,255,255,0.45);position:relative;z-index:1;">Versão Accent — Materiais de Destaque</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========= MANIFESTO ========= -->
+<div style="background: var(--off-white); padding: 80px 80px;">
+  <div style="max-width: 1240px; margin: 0 auto;">
+    <div class="manifesto-bloco">
+      <div class="manifesto-texto">
+        O CONECTA nasce da convicção de que<br>
+        <strong>a inclusão real não acontece em um único lugar.</strong><br>
+        Ela se tece entre a sala de aula, o consultório<br>
+        e a mesa do jantar em família.<br><br>
+        Nossa tecnologia não substitui o humano —<br>
+        ela <em>amplifica sua presença</em> onde ele não pode estar.
+      </div>
+      <div class="manifesto-assinatura">Projeto CONECTA — Rafael Rocha Oliveira · Maria Clara Fernandes Barbosa</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px;">
+      <div style="background:var(--creme);border-radius:12px;padding:32px;">
+        <div style="font-family:var(--fonte-display);font-size:40px;font-weight:800;color:var(--laranja);line-height:1;margin-bottom:8px;">01</div>
+        <div style="font-family:var(--fonte-display);font-size:16px;font-weight:700;color:var(--azul-profundo);margin-bottom:8px;">Humano Primeiro</div>
+        <div style="font-family:var(--fonte-texto);font-size:13px;color:rgba(10,22,40,0.6);line-height:1.6;">A IA nunca diagnostica. Sempre sugere. O profissional sempre decide.</div>
+      </div>
+      <div style="background:var(--creme);border-radius:12px;padding:32px;">
+        <div style="font-family:var(--fonte-display);font-size:40px;font-weight:800;color:var(--azul-vivo);line-height:1;margin-bottom:8px;">02</div>
+        <div style="font-family:var(--fonte-display);font-size:16px;font-weight:700;color:var(--azul-profundo);margin-bottom:8px;">Dados com Ética</div>
+        <div style="font-family:var(--fonte-texto);font-size:13px;color:rgba(10,22,40,0.6);line-height:1.6;">LGPD, criptografia ponta-a-ponta. Dados de crianças tratados com máxima responsabilidade.</div>
+      </div>
+      <div style="background:var(--creme);border-radius:12px;padding:32px;">
+        <div style="font-family:var(--fonte-display);font-size:40px;font-weight:800;color:var(--verde-neuro);line-height:1;margin-bottom:8px;">03</div>
+        <div style="font-family:var(--fonte-display);font-size:16px;font-weight:700;color:var(--azul-profundo);margin-bottom:8px;">Rede de Afeto</div>
+        <div style="font-family:var(--fonte-texto);font-size:13px;color:rgba(10,22,40,0.6);line-height:1.6;">Bronfenbrenner nos ensinou: o mesossistema forte transforma vidas. CONECTA constrói essa ponte.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
