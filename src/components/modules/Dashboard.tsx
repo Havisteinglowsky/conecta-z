@@ -271,7 +271,7 @@ export default function Dashboard() {
   }, [])
 
   // Prepare chart data from studentsBySituacao
-  const chartData = stats
+  const chartData = stats?.studentsBySituacao
     ? Object.entries(stats.studentsBySituacao).map(([situacao, count]) => ({
         situacao,
         count,
