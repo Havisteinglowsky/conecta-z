@@ -41,7 +41,7 @@ import { useAppStore } from '@/lib/store'
 const situacaoChartConfig = {
   count: {
     label: 'Alunos',
-    color: '#10b981',
+    color: '#FF6B2B',
   },
 } satisfies ChartConfig
 
@@ -68,48 +68,48 @@ const STAT_CARDS: StatCardDef[] = [
     key: 'totalStudents',
     label: 'Total de Alunos',
     icon: GraduationCap,
-    accent: 'text-emerald-600',
-    bgAccent: 'bg-emerald-50 dark:bg-emerald-950/40',
+    accent: 'text-[#FF6B2B]',
+    bgAccent: 'bg-[#FF6B2B]/10',
     module: 'students',
   },
   {
     key: 'totalTeachers',
     label: 'Total de Professores',
     icon: BookOpen,
-    accent: 'text-teal-600',
-    bgAccent: 'bg-teal-50 dark:bg-teal-950/40',
+    accent: 'text-[#1E5EFF]',
+    bgAccent: 'bg-[#1E5EFF]/10',
     module: 'teachers',
   },
   {
     key: 'totalPsychologists',
     label: 'Total de Psicólogos',
     icon: Stethoscope,
-    accent: 'text-amber-600',
-    bgAccent: 'bg-amber-50 dark:bg-amber-950/40',
+    accent: 'text-[#00D4A0]',
+    bgAccent: 'bg-[#00D4A0]/10',
     module: 'psychologists',
   },
   {
     key: 'totalInstitutions',
     label: 'Total de Instituições',
     icon: School,
-    accent: 'text-rose-600',
-    bgAccent: 'bg-rose-50 dark:bg-rose-950/40',
+    accent: 'text-[#0D2045]',
+    bgAccent: 'bg-[#0D2045]/10',
     module: 'institutions',
   },
   {
     key: 'totalClasses',
     label: 'Total de Turmas',
     icon: Users,
-    accent: 'text-violet-600',
-    bgAccent: 'bg-violet-50 dark:bg-violet-950/40',
+    accent: 'text-[#1E5EFF]',
+    bgAccent: 'bg-[#1E5EFF]/10',
     module: 'classes',
   },
   {
     key: 'studentsWithSpecialNeeds',
     label: 'Alunos com NEE',
     icon: Heart,
-    accent: 'text-pink-600',
-    bgAccent: 'bg-pink-50 dark:bg-pink-950/40',
+    accent: 'text-[#FF6B2B]',
+    bgAccent: 'bg-[#FF6B2B]/10',
     module: 'students',
   },
 ]
@@ -281,29 +281,35 @@ export default function Dashboard() {
   return (
     <div className="space-y-6">
       {/* ---- Welcome Banner ---- */}
-      <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
+      <Card className="relative overflow-hidden border-0 bg-gradient-to-br from-[#0A1628] via-[#0D2045] to-[#1A3A6E] text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-[#FF6B2B]/10 via-transparent to-transparent" />
         <CardContent className="relative px-6 py-8 sm:px-8 sm:py-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-4">
-              <div className="flex size-12 items-center justify-center rounded-xl bg-white/15 backdrop-blur-sm sm:size-14">
-                <Brain className="size-7 text-white sm:size-8" />
+              <div className="flex size-12 items-center justify-center rounded-xl bg-[#FF6B2B]/20 backdrop-blur-sm sm:size-14">
+                <Brain className="size-7 text-[#FF6B2B] sm:size-8" />
               </div>
               <div>
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                  NeuroLynx
+                  CON<span className="text-[#FF6B2B]">EC</span>TA
                 </h1>
-                <p className="mt-1 text-sm text-emerald-100 sm:text-base">
-                  Plataforma de Gestão Educacional Inclusiva &amp; Neurodiversidade
+                <p className="mt-1 text-sm text-[#F5F0E8]/70 sm:text-base">
+                  Central de Otimização e Neuroeducação para Evolução Cognitiva com Tecnologia Adaptativa
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2 text-emerald-200">
+            <div className="flex items-center gap-2 text-[#00D4A0]">
               <Sparkles className="size-4" />
               <span className="text-sm font-medium">
                 Painel de Controle
               </span>
             </div>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-2">
+            <div className="px-3 py-1 rounded-sm border border-white/10 text-[10px] uppercase tracking-widest text-white/40">Psicologia Escolar</div>
+            <div className="px-3 py-1 rounded-sm border border-white/10 text-[10px] uppercase tracking-widest text-white/40">Neuroeducação</div>
+            <div className="px-3 py-1 rounded-sm border border-white/10 text-[10px] uppercase tracking-widest text-white/40">IA Adaptativa</div>
+            <div className="px-3 py-1 rounded-sm border border-white/10 text-[10px] uppercase tracking-widest text-white/40">LBI Art.28</div>
           </div>
         </CardContent>
       </Card>
@@ -356,7 +362,7 @@ export default function Dashboard() {
         <Card className="lg:col-span-3">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Activity className="size-4 text-emerald-600" />
+              <Activity className="size-4 text-[#FF6B2B]" />
               Alunos por Situação
             </CardTitle>
             <CardDescription>
@@ -393,7 +399,7 @@ export default function Dashboard() {
                   />
                   <ChartTooltip
                     content={<ChartTooltipContent />}
-                    cursor={{ fill: 'rgba(16, 185, 129, 0.08)' }}
+                    cursor={{ fill: 'rgba(255, 107, 43, 0.08)' }}
                   />
                   <Bar
                     dataKey="count"
@@ -416,7 +422,7 @@ export default function Dashboard() {
         <Card className="lg:col-span-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
-              <Sparkles className="size-4 text-emerald-600" />
+              <Sparkles className="size-4 text-[#FF6B2B]" />
               Ações Rápidas
             </CardTitle>
             <CardDescription>
@@ -433,8 +439,8 @@ export default function Dashboard() {
                   className="w-full justify-start gap-3 px-3 py-5 text-left"
                   onClick={() => setActiveModule(action.module)}
                 >
-                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/40">
-                    <Icon className="size-4 text-emerald-600" />
+                  <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#FF6B2B]/10">
+                    <Icon className="size-4 text-[#FF6B2B]" />
                   </div>
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium">{action.label}</p>
@@ -454,7 +460,7 @@ export default function Dashboard() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2 text-base">
-            <Activity className="size-4 text-emerald-600" />
+            <Activity className="size-4 text-[#FF6B2B]" />
             Atividade Recente
           </CardTitle>
           <CardDescription>
@@ -485,8 +491,8 @@ export default function Dashboard() {
                       setActiveModule('records')
                     }}
                   >
-                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-emerald-50 dark:bg-emerald-950/40">
-                      <Activity className="size-4 text-emerald-600" />
+                    <div className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-[#FF6B2B]/10">
+                      <Activity className="size-4 text-[#FF6B2B]" />
                     </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-2">

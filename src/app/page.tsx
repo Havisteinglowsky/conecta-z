@@ -4,7 +4,8 @@ import { useAppStore } from '@/lib/store'
 import { 
   LayoutDashboard, School, GraduationCap, Stethoscope, Brain, 
   Users, BookOpen, Cpu, ClipboardList, FileText, Bot,
-  Menu, X, ChevronRight, Sparkles
+  Menu, ChevronRight, Sparkles, TrendingUp, Briefcase, Terminal,
+  Network,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { ScrollArea } from '@/components/ui/scroll-area'
@@ -26,6 +27,9 @@ import CognitiveProfilesModule from '@/components/modules/CognitiveProfilesModul
 import RecordsModule from '@/components/modules/RecordsModule'
 import ReportsModule from '@/components/modules/ReportsModule'
 import TeachingPlansModule from '@/components/modules/TeachingPlansModule'
+import EvolutionHistoryModule from '@/components/modules/EvolutionHistoryModule'
+import CorporateDossierModule from '@/components/modules/CorporateDossierModule'
+import HubPromptsModule from '@/components/modules/HubPromptsModule'
 import AIAssistantModule from '@/components/modules/AIAssistantModule'
 
 const NAV_ITEMS: { group: string; items: { id: ActiveModule; label: string; icon: React.ElementType }[] }[] = [
@@ -52,6 +56,7 @@ const NAV_ITEMS: { group: string; items: { id: ActiveModule; label: string; icon
       { id: 'curriculums', label: 'Currículos', icon: BookOpen },
       { id: 'cognitive-profiles', label: 'Perfil Cognitivo', icon: Brain },
       { id: 'teaching-plans', label: 'Planos de Ensino', icon: GraduationCap },
+      { id: 'evolution-history', label: 'Evolução', icon: TrendingUp },
     ]
   },
   {
@@ -59,6 +64,13 @@ const NAV_ITEMS: { group: string; items: { id: ActiveModule; label: string; icon
     items: [
       { id: 'records', label: 'Registros', icon: ClipboardList },
       { id: 'reports', label: 'Relatórios', icon: FileText },
+    ]
+  },
+  {
+    group: 'Institucional',
+    items: [
+      { id: 'corporate-dossier', label: 'Dossiê Corporativo', icon: Briefcase },
+      { id: 'hub-prompts', label: 'Hub de Prompts', icon: Terminal },
     ]
   },
   {
@@ -75,12 +87,14 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex flex-col h-full">
       <div className="px-4 py-5 flex items-center gap-3">
-        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-          <Brain className="w-5 h-5 text-white" />
+        <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#FF6B2B] to-[#FF8F5A] flex items-center justify-center shadow-lg shadow-[#FF6B2B]/20">
+          <Network className="w-5 h-5 text-white" />
         </div>
         <div>
-          <h1 className="text-lg font-bold tracking-tight text-foreground">NeuroLynx</h1>
-          <p className="text-[10px] text-muted-foreground leading-none">Educação Adaptativa & Inclusiva</p>
+          <h1 className="text-lg font-bold tracking-tight text-foreground">
+            CON<span className="text-[#FF6B2B]">EC</span>TA
+          </h1>
+          <p className="text-[10px] text-muted-foreground leading-none">Educação Adaptativa Integrada</p>
         </div>
       </div>
       <Separator />
@@ -105,16 +119,16 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
                         'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150',
                         'hover:bg-accent/50',
                         isActive
-                          ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 shadow-sm'
+                          ? 'bg-[#FF6B2B]/10 text-[#FF6B2B] shadow-sm'
                           : 'text-muted-foreground hover:text-foreground'
                       )}
                     >
                       <item.icon className={cn(
                         'w-4.5 h-4.5 shrink-0',
-                        isActive ? 'text-emerald-600 dark:text-emerald-400' : 'text-muted-foreground/60'
+                        isActive ? 'text-[#FF6B2B]' : 'text-muted-foreground/60'
                       )} />
                       <span className="truncate">{item.label}</span>
-                      {isActive && <ChevronRight className="w-3.5 h-3.5 ml-auto text-emerald-500/50" />}
+                      {isActive && <ChevronRight className="w-3.5 h-3.5 ml-auto text-[#FF6B2B]/50" />}
                     </button>
                   )
                 })}
@@ -126,9 +140,10 @@ function SidebarNav({ onNavigate }: { onNavigate?: () => void }) {
       <Separator />
       <div className="px-4 py-3">
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-          <span>MVP v1.0</span>
+          <Sparkles className="w-3.5 h-3.5 text-[#FF6B2B]" />
+          <span>MVP v2.0</span>
           <Badge variant="secondary" className="ml-auto text-[9px] px-1.5 py-0 h-4">LGPD</Badge>
+          <Badge variant="secondary" className="text-[9px] px-1.5 py-0 h-4 bg-[#00D4A0]/10 text-[#00D4A0]">LBI</Badge>
         </div>
       </div>
     </div>
@@ -151,6 +166,9 @@ function ModuleContent() {
     'records': <RecordsModule />,
     'reports': <ReportsModule />,
     'teaching-plans': <TeachingPlansModule />,
+    'evolution-history': <EvolutionHistoryModule />,
+    'corporate-dossier': <CorporateDossierModule />,
+    'hub-prompts': <HubPromptsModule />,
     'ai-assistant': <AIAssistantModule />,
   }
 
@@ -169,10 +187,13 @@ function Header() {
     'companions': 'Acompanhantes & Cuidadores',
     'classes': 'Turmas',
     'curriculums': 'Currículos Escolares',
-    'cognitive-profiles': 'Perfil Cognitivo Evolutivo',
+    'cognitive-profiles': 'Perfil Cognitivo Evolutivo (PCE)',
     'records': 'Registros & Observações',
     'reports': 'Relatórios',
-    'teaching-plans': 'Planos de Ensino',
+    'teaching-plans': 'Planos de Ensino Personalizado',
+    'evolution-history': 'Evolução & Histórico',
+    'corporate-dossier': 'Dossiê Corporativo CONECTA',
+    'hub-prompts': 'Hub de Prompts',
     'ai-assistant': 'Assistente de IA',
   }
 

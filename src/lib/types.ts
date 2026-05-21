@@ -1,5 +1,7 @@
 // ============================================
-// NEUROLYNX - TypeScript Types & Interfaces
+// CONECTA - TypeScript Types & Interfaces
+// Central de Otimização e Neuroeducação para
+// Evolução Cognitiva com Tecnologia Adaptativa
 // ============================================
 
 // --- Active Module (Navigation) ---
@@ -16,6 +18,9 @@ export type ActiveModule =
   | 'records'
   | 'reports'
   | 'teaching-plans'
+  | 'evolution-history'
+  | 'corporate-dossier'
+  | 'hub-prompts'
   | 'ai-assistant'
 
 // --- Institution ---
