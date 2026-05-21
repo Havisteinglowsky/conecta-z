@@ -1,0 +1,501 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================
+// NEUROLYNX - Sistema de Educação Adaptativa
+// ============================================
+
+// --- INSTITUIÇÃO DE ENSINO ---
+model Institution {
+  id                    String   @id @default(cuid())
+  cnpj                  String   @unique
+  razaoSocial           String
+  nomeFantasia          String
+  codigoInep            String?
+  tipo                  String   // Federal, Estadual, Municipal, Particular
+  dependenciaAdmin      String?  // Federal, Estadual, Municipal, Privada
+  rede                  String?  // Pública, Privada
+  regulamentacao        String?  // Ativa, Em regularização
+  logo                  String?
+  
+  // Endereço
+  cep                   String?
+  logradouro            String?
+  numero                String?
+  complemento           String?
+  bairro                String?
+  municipio             String?
+  uf                    String?
+  pais                  String?  @default("Brasil")
+  
+  // Contato
+  telefone              String?
+  telefone2             String?
+  email                 String?
+  site                  String?
+  
+  // Direção
+  nomeDiretor           String?
+  telefoneDiretor       String?
+  emailDiretor          String?
+  
+  // Ensino
+  modalidades           String?  // JSON array: Regular, EJA, Especial, Profissionalizante
+  etapas                String?  // JSON array: Infantil, Fundamental, Médio, Superior
+  turnos                String?  // JSON array: Matutino, Vespertino, Noturno
+  totalSalas            Int?
+  capacidadeAlunos      Int?
+  
+  // Infraestrutura
+  laboratorioInformatica Boolean  @default(false)
+  biblioteca             Boolean  @default(false)
+  quadraEsportiva        Boolean  @default(false)
+  salaRecursos           Boolean  @default(false)
+  acessibilidade         Boolean  @default(false)
+  internet               Boolean  @default(false)
+  
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  students              Student[]
+  teachers              Teacher[]
+  psychologists         Psychologist[]
+  classes               Class[]
+  curriculums           Curriculum[]
+}
+
+// --- ALUNO ---
+model Student {
+  id                    String   @id @default(cuid())
+  institutionId         String
+  matricula             String   @unique
+  
+  // Dados Pessoais
+  nomeCompleto          String
+  cpf                   String?
+  rg                    String?
+  orgaoEmissor          String?
+  ufEmissor             String?
+  dataExpedicao         String?
+  dataNascimento        String
+  sexo                  String?  // Masculino, Feminino, Não-binário
+  corRaca               String?  // Branca, Preta, Parda, Amarela, Indígena
+  nacionalidade         String?  @default("Brasileira")
+  naturalidade          String?  // Cidade/UF
+  paisNascimento        String?  @default("Brasil")
+  
+  // Filiação
+  nomePai               String?
+  nomeMae               String?
+  
+  // Endereço
+  cep                   String?
+  logradouro            String?
+  numero                String?
+  complemento           String?
+  bairro                String?
+  municipio             String?
+  uf                    String?
+  
+  // Contato
+  telefone              String?
+  celular               String?
+  email                 String?
+  
+  // Responsável Legal
+  responsavelNome       String?
+  responsavelParentesco String?  // Pai, Mãe, Tutor, Outro
+  responsavelCpf        String?
+  responsavelRg         String?
+  responsavelTelefone   String?
+  responsavelEmail      String?
+  responsavelProfissao  String?
+  
+  // Educação Especial / NEE
+  necessidadeEspecial   Boolean  @default(false)
+  tipoDeficiencia       String?  // JSON array: Auditiva, Visual, Física, Intelectual, Múltipla, Autismo, TDAH, Outra
+  cid                   String?
+  laudoLaee             Boolean  @default(false)
+  recursosAcessibilidade String? // JSON array
+  acomodacoes           String?  // JSON array
+  
+  // Saúde
+  alergias              String?
+  medicacoes            String?
+  doencasCronicas       String?
+  planoSaude            String?
+  contatoEmergencia     String?
+  tipoSanguineo         String?
+  
+  // Programas Sociais
+  bolsaFamilia          Boolean  @default(false)
+  peti                  Boolean  @default(false)
+  outrosProgramas       String?
+  
+  // Dados Escolares
+  turmaId               String?
+  serieAno              String?
+  turno                 String?  // Matutino, Vespertino, Noturno
+  dataMatricula         String?
+  situacao              String?  @default("Ativo") // Ativo, Transferido, Evadido, Afastado
+  modalidade            String?  // Regular, EJA, Especial
+  transporteEscolar     Boolean  @default(false)
+  alimentacao           String?  // Integral, Parcial, Nenhum
+  
+  // Observações gerais
+  observacoes           String?
+  
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  institution           Institution @relation(fields: [institutionId], references: [id])
+  turma                 Class?      @relation(fields: [turmaId], references: [id])
+  cognitiveProfiles     CognitiveProfile[]
+  records               Record[]
+  reports               Report[]
+
+  companionLinks        StudentCompanion[]
+}
+
+// --- PROFESSOR / EDUCADOR ---
+model Teacher {
+  id                    String   @id @default(cuid())
+  institutionId         String
+  matricula             String?
+  
+  // Dados Pessoais
+  nomeCompleto          String
+  cpf                   String?
+  rg                    String?
+  orgaoEmissor          String?
+  dataNascimento        String?
+  sexo                  String?
+  corRaca               String?
+  nacionalidade         String?  @default("Brasileira")
+  estadoCivil           String?
+  
+  // Endereço
+  cep                   String?
+  logradouro            String?
+  numero                String?
+  complemento           String?
+  bairro                String?
+  municipio             String?
+  uf                    String?
+  
+  // Contato
+  telefone              String?
+  celular               String?
+  email                 String?
+  
+  // Formação
+  escolaridade          String?  // Ensino Médio, Superior Incompleto, Superior Completo, Pós-Graduação, Mestrado, Doutorado
+  cursoGraduacao        String?
+  instituicaoGraduacao  String?
+  anoConclusaoGrad      String?
+  posGraduacao          String?  // Especialização, Mestrado, Doutorado, Pós-Doutorado
+  areaPosGraduacao      String?
+  instituicaoPosGrad    String?
+  anoConclusaoPos       String?
+  
+  // Dados Funcionais
+  cargo                 String?  // Professor, Coordenador, Diretor, Vice-Diretor
+  nivel                 String?
+  regimeJuridico        String?  // Efetivo, Contrato, Estágio, Temporário
+  cargaHoraria          String?
+  dataAdmissao          String?
+  lotacao               String?
+  
+  // Disciplinas e Turmas
+  disciplinas           String?  // JSON array
+  series                String?  // JSON array
+  
+  // Especialização
+  especializacaoInclusao Boolean  @default(false)
+  especializacaoEspecial Boolean  @default(false)
+  cursosCapacitacao     String?  // JSON array
+  
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  institution           Institution @relation(fields: [institutionId], references: [id])
+  classes               Class[]
+  records               Record[]
+}
+
+// --- PSICÓLOGO ---
+model Psychologist {
+  id                    String   @id @default(cuid())
+  institutionId         String
+  
+  // Dados Pessoais
+  nomeCompleto          String
+  cpf                   String?
+  rg                    String?
+  dataNascimento        String?
+  sexo                  String?
+  nacionalidade         String?  @default("Brasileira")
+  
+  // Contato
+  telefone              String?
+  celular               String?
+  email                 String?
+  
+  // Registro Profissional
+  crp                   String?
+  crpUf                 String?
+  
+  // Formação
+  escolaridade          String?
+  cursoGraduacao        String?
+  instituicaoGraduacao  String?
+  anoConclusao          String?
+  posGraduacao          String?
+  areaEspecializacao    String?  // Neuropsicologia, Psicologia Escolar, Clínica, Outra
+  abordagemTerapeutica  String?  // Cognitivo-Comportamental, Psicanalítica, Humanista, Outra
+  
+  // Atuação
+  cargo                 String?
+  regimeJuridico        String?
+  cargaHoraria          String?
+  dataAdmissao          String?
+  supervisorNome        String?
+  supervisorCrp         String?
+  horarioAtendimento    String?
+  
+  // Competências
+  experienciaInclusao   Boolean  @default(false)
+  experienciaNeurodiv   Boolean  @default(false)
+  capacitacaoLaee       Boolean  @default(false)
+  
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  institution           Institution @relation(fields: [institutionId], references: [id])
+  records               Record[]
+  reports               Report[]
+}
+
+// --- ACOMPANHANTE / CUIDADOR ---
+model Companion {
+  id                    String   @id @default(cuid())
+  
+  // Dados Pessoais
+  nomeCompleto          String
+  cpf                   String?
+  rg                    String?
+  dataNascimento        String?
+  sexo                  String?
+  
+  // Contato
+  telefone              String?
+  celular               String?
+  email                 String?
+  
+  // Vínculo
+  vinculo               String?  // Pai, Mãe, Tutor, Acompanhante Terapêutico, Cuidador, Estagiário
+  formacao              String?  // Pedagogia, Psicologia, Terapia Ocupacional, Outra
+  registroProfissional  String?  // CRP, CREF, etc.
+  
+  // Função
+  funcao                String?  // Acompanhante escolar, Cuidador, Tradutor intérprete de Libras, Guia-intérprete
+  cargaHoraria          String?
+  periodo               String?
+  
+  // Observações
+  observacoes           String?
+  
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  studentLinks          StudentCompanion[]
+}
+
+// --- Tabela de vínculo Aluno-Acompanhante ---
+model StudentCompanion {
+  id                    String   @id @default(cuid())
+  studentId             String
+  companionId           String
+  inicio                String?
+  fim                   String?
+  observacoes           String?
+  ativo                 Boolean  @default(true)
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  student               Student   @relation(fields: [studentId], references: [id])
+  companion             Companion @relation(fields: [companionId], references: [id])
+}
+
+// --- TURMA ---
+model Class {
+  id                    String   @id @default(cuid())
+  institutionId         String
+  nome                  String   // Ex: 3º Ano A
+  serieAno              String?  // 1º Ano, 2º Ano...
+  nivel                 String?  // Infantil, Fundamental I, Fundamental II, Médio
+  turno                 String?  // Matutino, Vespertino, Noturno
+  sala                  String?
+  anoLetivo             String?
+  maxAlunos             Int?
+  
+  teacherId             String?
+  
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  institution           Institution @relation(fields: [institutionId], references: [id])
+  teacher               Teacher?    @relation(fields: [teacherId], references: [id])
+  students              Student[]
+}
+
+// --- CURRÍCULO ESCOLAR ---
+model Curriculum {
+  id                    String   @id @default(cuid())
+  institutionId         String
+  nome                  String   // Ex: Currículo BNCC 2026 - Fundamental I
+  anoLetivo             String?
+  nivel                 String?  // Infantil, Fundamental I, Fundamental II, Médio
+  serieAno              String?
+  bncc                  Boolean  @default(true)
+  
+  // Estrutura curricular
+  disciplinas           String?  // JSON array de disciplinas com carga horária
+  competenciasGerais    String?  // JSON
+  habilidades           String?  // JSON
+  objetivosAprendizagem String?  // JSON
+  metodologias          String?  // JSON
+  
+  // Adaptações
+  adaptacaoInclusiva    Boolean  @default(false)
+  adaptacaoNeurodiv     Boolean  @default(false)
+  descricaoAdaptacao    String?
+  
+  observacoes           String?
+  ativo                 Boolean  @default(true)
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  institution           Institution @relation(fields: [institutionId], references: [id])
+}
+
+// --- PERFIL COGNITIVO EVOLUTIVO (PCE) ---
+model CognitiveProfile {
+  id                    String   @id @default(cuid())
+  studentId             String
+  
+  // Perfil Comportamental
+  atencao               Int?     // 1-10
+  foco                  Int?
+  impulsividade         Int?
+  sociabilidade         Int?
+  autonomia             Int?
+  motivacao             Int?
+  adaptabilidade        Int?
+  
+  // Perfil Cognitivo
+  memoria               Int?     // 1-10
+  raciocinioLogico      Int?
+  compreensao           Int?
+  velocidadeProcessamento Int?
+  resolucaoProblemas    Int?
+  criatividade          Int?
+  linguagem             Int?
+  
+  // Perfil Pedagógico
+  leitura               Int?     // 1-10
+  escrita               Int?
+  calculo               Int?
+  interpretacao         Int?
+  producaoTextual       Int?
+  
+  // Diagnóstico pedagógico
+  dificuldades          String?  // JSON array
+  habilidades           String?  // JSON array
+  estilosAprendizagem   String?  // JSON: Visual, Auditivo, Cinestésico
+  estrategiasRecomendadas String? // JSON array
+  
+  // Histórico Emocional
+  estadoEmocional       String?  // Estável, Instável, Em transição
+  regressoes            String?  // JSON array
+  observacoesEmocionais String?
+  
+  // Evolução temporal
+  nivelEvolucao         String?  // Regressão, Estável, Evolução lenta, Evolução satisfatória, Evolução excelente
+  dataAvaliacao         String?
+  avaliador             String?
+  
+  observacoes           String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  student               Student @relation(fields: [studentId], references: [id])
+}
+
+// --- REGISTROS / OBSERVAÇÕES ---
+model Record {
+  id                    String   @id @default(cuid())
+  studentId             String
+  tipo                  String   // Pedagógica, Psicológica, Comportamental, Evolutiva, Familiar, Outra
+  categoria             String?  // Observação, Intervenção, Avaliação, Acompanhamento
+  titulo                String
+  descricao             String
+  
+  // Autor
+  authorId              String?
+  authorName            String?
+  authorRole            String?  // Professor, Psicólogo, Coordenador, Outro
+  
+  dataRegistro          String?
+  
+  // Status
+  prioridade            String?  // Baixa, Média, Alta, Urgente
+  status                String?  @default("Aberto") // Aberto, Em andamento, Concluído
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  student               Student     @relation(fields: [studentId], references: [id])
+  teacher               Teacher?    @relation(fields: [authorId], references: [id])
+  psychologist          Psychologist? @relation(fields: [authorId], references: [id])
+}
+
+// --- RELATÓRIOS ---
+model Report {
+  id                    String   @id @default(cuid())
+  studentId             String?
+  psychologistId        String?
+  
+  tipo                  String   // Pedagógico, Psicológico, Multidisciplinar, Governamental, Familiar
+  titulo                String
+  conteudo              String
+  periodo               String?
+  dataEmissao           String?
+  
+  // Metadados
+  geradoPor             String?
+  revisadoPor           String?
+  status                String?  @default("Rascunho") // Rascunho, Revisão, Finalizado
+  
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  student               Student?     @relation(fields: [studentId], references: [id])
+  psychologist          Psychologist? @relation(fields: [psychologistId], references: [id])
+}
